@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AF351298-07BC-46BB-8AAB-DB98DD6A4414}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargoCarrier.Mvc", "src\CargoCarrier.Mvc\CargoCarrier.Mvc.csproj", "{81B037B2-FDCF-4DBA-8548-0E5426B439FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C7F6B714-19CC-4733-9787-3CD15D255F57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargoCarrier.Mvc.Tests", "tests\CargoCarrier.Mvc.Tests\CargoCarrier.Mvc.Tests.csproj", "{747727A8-BB07-4AC1-ACBD-4D5F4B9B2C8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81B037B2-FDCF-4DBA-8548-0E5426B439FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B037B2-FDCF-4DBA-8548-0E5426B439FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B037B2-FDCF-4DBA-8548-0E5426B439FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B037B2-FDCF-4DBA-8548-0E5426B439FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{747727A8-BB07-4AC1-ACBD-4D5F4B9B2C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{747727A8-BB07-4AC1-ACBD-4D5F4B9B2C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{747727A8-BB07-4AC1-ACBD-4D5F4B9B2C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{747727A8-BB07-4AC1-ACBD-4D5F4B9B2C8C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{81B037B2-FDCF-4DBA-8548-0E5426B439FF} = {AF351298-07BC-46BB-8AAB-DB98DD6A4414}
+		{747727A8-BB07-4AC1-ACBD-4D5F4B9B2C8C} = {C7F6B714-19CC-4733-9787-3CD15D255F57}
+	EndGlobalSection
+EndGlobal
