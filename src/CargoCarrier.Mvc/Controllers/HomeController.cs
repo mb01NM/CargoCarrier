@@ -30,6 +30,7 @@ public class HomeController : Controller
         _logger.LogInformation($"Received parcel sizes: Small - {smallParcels}, Medium - {mediumParcels}, Large - {largeParcels}");
 
         // TODO: Add your logic here to handle the parcel sizes
+        // Large trucks can carry 3 large parcels or 6 medium parcels or 12 small parcels
 
         ViewBag.SmallTrucks = 1;
         ViewBag.LargeTrucks = 1;
