@@ -23,6 +23,19 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpPost]
+    public IActionResult ParcelSizes(int smallParcels, int mediumParcels, int largeParcels)
+    {
+        // Log the received parcel sizes
+        _logger.LogInformation($"Received parcel sizes: Small - {smallParcels}, Medium - {mediumParcels}, Large - {largeParcels}");
+
+        // TODO: Add your logic here to handle the parcel sizes
+
+        ViewBag.SmallTrucks = 1;
+        ViewBag.LargeTrucks = 1;
+        return View("ParcelSizes");
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

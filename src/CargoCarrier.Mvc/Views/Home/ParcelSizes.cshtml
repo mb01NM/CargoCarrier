@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Parcel Trucks";
+    int smallTrucks = ViewBag.SmallTrucks;
+    int largeTrucks = ViewBag.LargeTrucks;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Parcel Trucks</h1>
+    <p>You will need <strong>@smallTrucks</strong> small trucks and <strong>@largeTrucks</strong> large trucks for your parcels.</p>
+    <form action="/" method="get">
+        <input type="submit" value="Create a new query">
+    </form>
+</div>
