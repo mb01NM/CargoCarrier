@@ -31,6 +31,7 @@ public class HomeController : Controller
 
         // TODO: Add your logic here to handle the parcel sizes
         // Large trucks can carry 3 large parcels or 6 medium parcels or 12 small parcels
+        // Small trucks can carry 1 large parcel or 2 medium parcels or 4 small parcels
 
         ViewBag.SmallTrucks = 1;
         ViewBag.LargeTrucks = 1;
