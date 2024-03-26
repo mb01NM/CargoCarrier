@@ -8,8 +8,11 @@ namespace CargoCarrier.Mvc.Database
     {
         private readonly string _connectionString;
 
-        public TripDatabase()
+        private readonly ILogger<TripDatabase> _logger;
+
+        public TripDatabase(ILogger<TripDatabase> logger)
         {
+            _logger = logger;
             _connectionString = "Data Source=Memory;Mode=Memory;Cache=Shared";
             InitializeDatabase();
         }
@@ -43,33 +46,50 @@ namespace CargoCarrier.Mvc.Database
             seedTripsCommand.ExecuteNonQuery();
         }
 
-
-        // This method must be fixed
-        public async Task<List<Trip>> GetTripsWithParcelSizeLessThanAsync(string maxParcelSize)
+        public async Task<List<Trip>> GetTripsWithParcelSizeLessThanAsync(int maxParcelSize)
         {
             var trips = new List<Trip>();
 
-            var connection = new SqliteConnection(_connectionString);
-            await connection.OpenAsync();
-
-            var command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM Trips WHERE ParcelSize < " + maxParcelSize;
-
-            var reader = await command.ExecuteReaderAsync();
-            while (await reader.ReadAsync())
+            try
             {
-                var trip = new Trip
+                using (var connection = new SqliteConnection(_connectionString))
                 {
-                    Id = reader.GetInt32(0),
-                    ParcelSize = reader.GetInt32(1),
-                    LicensePlate = reader.GetString(2),
-                    Start = DateTime.Parse(reader.GetString(3)),
-                    End = DateTime.Parse(reader.GetString(4))
-                };
-                trips.Add(trip);
+                    await connection.OpenAsync();
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "SELECT Id, ParcelSize, LicensePlate, Start, End FROM Trips WHERE ParcelSize < @maxParcelSize";
+                        command.Parameters.AddWithValue("@maxParcelSize", maxParcelSize);
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                var trip = new Trip
+                                {
+                                    Id = reader.GetInt32(0),
+                                    ParcelSize = reader.GetInt32(1),
+                                    LicensePlate = reader.GetString(2),
+                                    Start = DateTime.Parse(reader.GetString(3)),
+                                    End = DateTime.Parse(reader.GetString(4))
+                                };
+                                trips.Add(trip);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqliteException sqle)
+            {
+                _logger.LogError(sqle, "A database error occurred while querying the database");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An non-database error occurred while querying the database");
             }
 
             return trips;
         }
+
     }
 }
