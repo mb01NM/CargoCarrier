@@ -42,7 +42,7 @@ public class HomeController : Controller
 
     // Test via http://localhost:5152/home/TripsWithParcelSizeLessThan?maxParcelSize=15 using curl/browser/etc.
     [HttpGet]
-    public Task<List<Trip>> TripsWithParcelSizeLessThan(string maxParcelSize)
+    public Task<List<Trip>> TripsWithParcelSizeLessThan(int maxParcelSize)
     {
         var trips = _tripDatabase.GetTripsWithParcelSizeLessThanAsync(maxParcelSize);
         return trips;
