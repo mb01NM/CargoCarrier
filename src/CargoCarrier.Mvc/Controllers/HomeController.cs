@@ -1,16 +1,19 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using CargoCarrier.Mvc.Models;
+using CargoCarrier.Mvc.Database;
 
 namespace CargoCarrier.Mvc.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly TripDatabase _tripDatabase;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger,  TripDatabase tripDatabase)
     {
         _logger = logger;
+        _tripDatabase = tripDatabase;
     }
 
     public IActionResult Index()
@@ -36,6 +39,14 @@ public class HomeController : Controller
         ViewBag.SmallTrucks = 1;
         ViewBag.LargeTrucks = 1;
         return View("ParcelSizes");
+    }
+
+    // Test via http://localhost:5152/home/TripsWithParcelSizeLessThan?maxParcelSize=15 using curl/browser/etc.
+    [HttpGet]
+    public Task<List<Trip>> TripsWithParcelSizeLessThan(string maxParcelSize)
+    {
+        var trips = _tripDatabase.GetTripsWithParcelSizeLessThanAsync(maxParcelSize);
+        return trips;
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

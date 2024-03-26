@@ -1,7 +1,10 @@
+using CargoCarrier.Mvc.Database;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<TripDatabase>();
 
 var app = builder.Build();
 
