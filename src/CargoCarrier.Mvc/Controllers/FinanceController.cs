@@ -29,7 +29,7 @@ namespace CargoCarrier.Mvc.Controllers
                 }
 
                 // Calculation logic
-                decimal basePrice = 10;
+                decimal basePrice = 10 + 1*parcelAmount;
                 decimal expressFee = isExpress ? 5 : 0;
                 decimal distanceFee = distance * 0.1m;
                 decimal voucherDiscount = voucherCode == "DISCOUNT10" ? 10 : 0;
@@ -37,7 +37,7 @@ namespace CargoCarrier.Mvc.Controllers
 
                 // Check if the start date is on a weekend
                 bool isWeekend = startDate.DayOfWeek == DayOfWeek.Saturday || startDate.DayOfWeek == DayOfWeek.Sunday;
-                decimal weekendFee = isWeekend ? (basePrice + expressFee + distanceFee - voucherDiscount + dangerousFee) * 0.25m : 0;
+                decimal weekendFee = isWeekend ? (basePrice + expressFee + distanceFee + dangerousFee) * 0.25m : 0;
 
                 // Check for specific holidays
                 Boolean isHoliday = false;
@@ -48,7 +48,7 @@ namespace CargoCarrier.Mvc.Controllers
                 if (startDate.Month == 4 && startDate.Day == 1)
                     isHoliday = true;
 
-                decimal holidayFee = isHoliday ? (basePrice + expressFee + distanceFee - voucherDiscount + dangerousFee) * 0.50m : 0;
+                decimal holidayFee = isHoliday ? (basePrice + expressFee + distanceFee + dangerousFee) * 0.50m : 0;
 
                 // Calculate the total price
                 decimal totalPrice = basePrice + expressFee + distanceFee - voucherDiscount + dangerousFee + weekendFee + holidayFee;
