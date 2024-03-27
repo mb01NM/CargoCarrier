@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<TripDatabase>();
+builder.Services.AddScoped<CargoCarrier.Mvc.Services.CostCalculationService>();
 
 var app = builder.Build();
 
