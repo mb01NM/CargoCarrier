@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Cost estimator";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form action="/FinanceController/CalculateCost" method="post" id="calculateCostForm">
+    <label for="parcelAmount">Parcel amount:</label>
+    <input type="number" id="parcelAmount" name="parcelAmount" step="1" required><br>
+
+    <label for="isExpress">Express shipping:</label>
+    <input type="checkbox" id="isExpress" name="isExpress"><br>
+
+    <label for="distance">Distance:</label>
+    <input type="number" id="distance" name="distance" step="0.01" required><br>
+
+    <label for="voucherCode">Voucher code:</label>
+    <input type="text" id="voucherCode" name="voucherCode"><br>
+
+    <label for="isDangerous">Is dangerous:</label>
+    <input type="checkbox" id="isDangerous" name="isDangerous"><br>
+
+    <label for="startDate">Start date:</label>
+    <input type="date" id="startDate" name="startDate" required><br>
+
+    <input type="submit" value="Calculate Cost">
+</form>
+
+<div id="result"></div>
