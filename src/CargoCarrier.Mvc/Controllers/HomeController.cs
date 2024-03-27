@@ -21,11 +21,6 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
     [HttpPost]
     public IActionResult ParcelSizes(int smallParcels, int mediumParcels, int largeParcels)
     {
